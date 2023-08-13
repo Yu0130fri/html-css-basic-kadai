@@ -10,3 +10,8 @@ while (i < holidays.length) {
     console.log(holidays[i]);
     i++;
 }
+console.log("==")
+
+for (let i in holidays){
+    console.log(holidays[i])
+}
