@@ -100,14 +100,17 @@ const rankCheck = score => {
 
 // ゲームを終了
 const gameOver = id => {
-  clearInterval(id);
+    typedfield.textContent = ""
+    untypedfield.textContent = "タイムアップ！"
+    clearInterval(id);
+    setTimeout(()=>{
+        const result = confirm(rankCheck(score));
 
-  const result = confirm(rankCheck(score));
-
-  // OKボタンをクリックされたらリロードする
-  if(result == true) {
-    window.location.reload();
-  }
+        // OKボタンをクリックされたらリロードする
+        if(result == true) {
+          window.location.reload();
+        }
+    }, 1)
 };
 
 // カウントダウンタイマー
@@ -121,7 +124,6 @@ const timer = () => {
         count.textContent = time;       
         // カウントが0になったらタイマーを停止する
         if(time <= 0) {
-            show_time_up(measure_time);
             gameOver(id);
         }
     }, 1000);
@@ -143,14 +145,11 @@ start.addEventListener('click', () => {
     document.addEventListener('keypress', keyPress);
 });
 
-const measure_time = setTimeout(() => {
-    show_time_up(measure_time)
-}, 0)
 
-const show_time_up = measure_time => {
-    clearTimeout(measure_time)
-    typedfield.textContent = ""
-    untypedfield.textContent = "タイムアップ！"
-}
+// const show_time_up = measure_time => {
+    
+
+// }
+
 
 untypedfield.textContent = 'スタートボタンで開始';
