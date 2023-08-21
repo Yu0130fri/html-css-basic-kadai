@@ -112,37 +112,45 @@ const gameOver = id => {
 
 // カウントダウンタイマー
 const timer = () => {
-
-  // タイマー部分のHTML要素（p要素）を取得する
-  let time = count.textContent;
-
-  const id = setInterval(() => {
-
-    // カウントダウンする
-    time--;
-    count.textContent = time;
-
-    // カウントが0になったらタイマーを停止する
-    if(time <= 0) {
-      gameOver(id);
-    }
-  }, 1000);
+    // タイマー部分のHTML要素（p要素）を取得する
+    let time = count.textContent;
+    
+    const id = setInterval(() => {
+        // カウントダウンする
+        time--;
+        count.textContent = time;       
+        // カウントが0になったらタイマーを停止する
+        if(time <= 0) {
+            show_time_up(measure_time);
+            gameOver(id);
+        }
+    }, 1000);
 };
 
 // ゲームスタート時の処理
 start.addEventListener('click', () => {
 
-  // カウントダウンタイマーを開始する
-  timer();
+    // カウントダウンタイマーを開始する
+    timer();
 
-  // ランダムなテキストを表示する
-  createText();
+    // ランダムなテキストを表示する
+    createText();
 
-  // 「スタート」ボタンを非表示にする
-  start.style.display = 'none';
+    // 「スタート」ボタンを非表示にする
+    start.style.display = 'none';
 
-  // キーボードのイベント処理
-  document.addEventListener('keypress', keyPress);
+    // キーボードのイベント処理
+    document.addEventListener('keypress', keyPress);
 });
+
+const measure_time = setTimeout(() => {
+    show_time_up(measure_time)
+}, 0)
+
+const show_time_up = measure_time => {
+    clearTimeout(measure_time)
+    typedfield.textContent = ""
+    untypedfield.textContent = "タイムアップ！"
+}
 
 untypedfield.textContent = 'スタートボタンで開始';
