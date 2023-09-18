@@ -1,0 +1,42 @@
+html, body{
+    margin: 0;
+    padding: 0;
+}
+
+/* ===========================
+ヘッダー
+=========================== */
+header {
+    position: relative;
+}
+
+#header{
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 10px;
+
+}
+
+.nav{
+    display: flex;
+
+}
+
+.nav a{
+    text-decoration: none;
+    list-style: none;
+    color: #fff;
+}
+
+.carousel{
+    z-index: -1;
+}
+
+
+/* ===========================
+News
+=========================== */
+.news{
+    display: flex;
+}
